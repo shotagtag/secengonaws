@@ -80,6 +80,7 @@ alias awslocal="aws --endpoint-url=http://localhost:4566"
 ### データキーの生成
 
 1. KMS API でデータキーを作成します。生成して、応答をJSONファイルに出力します。
+   - ⚠️ : KMS上にデータキーは残りません。KMS上に保管されるのはKMSキーです。
 ```bash
 aws kms generate-data-key --key-id alias/myapp-kms-key --key-spec AES_256 > datakey.json
 ```
@@ -152,7 +153,7 @@ awslocal s3 ls s3://mybucket/
 
 11. 平文データキーと元ファイル、JSONファイルをローカルから削除します（セキュリティのため）。
 ```bash
-rm plaintext_key.bin original.txt datakey.json
+rm -f plaintext_key.bin original.txt datakey.json
 ```
 
 🎉 これで暗号化されたファイル(`original.encrypted`)と暗号化されたデータキー(`encrypted_key.bin`)がLocalStack S3に安全に保存されました！
