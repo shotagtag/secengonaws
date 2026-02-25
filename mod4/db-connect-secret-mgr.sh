@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Secrets Manager から接続情報を取得（JSON形式）
-SECRET=$(aws secretsmanager get-secret-value --secret-id "mydatabase/credentials" --query "SecretString" --output text)
+SECRET=$(aws secretsmanager get-secret-value --secret-id "mydatabase/credentials" --query "SecretString" --output json)
 
 
 # JSONから各値を抽出
